@@ -18,12 +18,9 @@ pipeline {
             }
         }
         stage('Quality'){
-            environment{
-                scannerHome = tool 'default-sonar-scanner'
-            }
             steps{
                 withSonarQubeEnv('DevOpsSonarQube'){
-                    sh "${scannerHome}/bin/sonar-scanner"
+                   sh 'mvn sonar:sonar'
                 }
             }
         }
