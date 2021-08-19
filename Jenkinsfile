@@ -20,7 +20,7 @@ pipeline {
         stage('Quality'){
             steps{
                 withSonarQubeEnv('DevOpsSonarQube'){
-                   sh './mvnw sonar:sonar'
+                   sh './mvnw -Dversion=${BUILD_NUMBER} sonar:sonar'
                 }
             }
         }
