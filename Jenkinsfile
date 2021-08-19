@@ -3,12 +3,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -B -Dversion=${BUILD_NUMBER} -DskipTests clean package'
+                sh 'chmod +x mvnw'
+                sh './mvnw -B -Dversion=${BUILD_NUMBER} -DskipTests clean package'
             }
         }
         stage('Test') {
             steps {
-                sh 'mvn test -Dversion=${BUILD_NUMBER}'
+                sh './mvnw test -Dversion=${BUILD_NUMBER}'
             }
             post {
                 always {
